@@ -1,0 +1,169 @@
+﻿{% extends 'header.html' %}
+
+{% block title %}
+    主页
+{% endblock %}
+
+{% block mainBody %}
+    <!--Page Title-->
+    <section class="page-title" style="background-image:url(/static/images/background/8.jpg);">
+        <div class="container">
+            <h1>Contact Us</h1>
+        </div>
+    </section>
+    <!--End Page Title-->
+
+    <!--Page Info-->
+    <section class="page-info">
+        <div class="container">
+            <div class="flex-box-five">
+                <ul class="bread-crumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Contact Us</li>
+                </ul>
+                <div class="share-link"><a href="#"><i class="fa fa-share-alt"></i>share</a></div>
+            </div>
+        </div>
+    </section>
+    <!--End Page Info-->
+
+    <section class="contact-section sp-one">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-12 pr-md-0">
+                    <div class="form-bg-one">
+                        <!--Sec Title-->
+                        <div class="sec-title">
+                            <h5>Quick Contact</h5>
+                            <h2>Get Touch With Us</h2>
+                            <div class="text mt-4">We recently helped a small business grow from break-even to over $1
+                                Million profit in less than 2 years, Have a general question, find below contact details
+                                .
+                            </div>
+                        </div>
+                        <!-- Contact Form -->
+                        <div class="contact-form style-two">
+                            <!--Comment Form-->
+                            <form method="post" action="sendemail.php" id="contact-form">
+                                <div class="row clearfix">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <input type="text" name="username" placeholder="Your Name*" required>
+                                        <input type="text" name="phone" placeholder="Phone Number *" required>
+                                        <select class="custom-select-box">
+                                            <option>Choose Service</option>
+                                            <option>Service One</option>
+                                            <option>Service Two</option>
+                                            <option>Service Three</option>
+                                            <option>Service Four</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <textarea name="message" placeholder="Your Message..."></textarea>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <button class="theme-btn btn-style-one w-100" type="submit" name="submit-form">
+                                            Submit Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!--End Comment Form -->
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-5 col-sm-12 pl-md-0">
+                    <div class="image"><img src="/static/images/resource/contact-1.jpg" alt=""></div>
+                    <div class="contact-info-two">
+                        <h4>Corporate Office</h4>
+                        <div class="single-item-carousel owl-carousel owl-theme owl-dot-none owl-nav-style-two">
+                            <div class="item">
+                                <div class="info-box-two">
+                                    <div class="icon-box"><span class="icon-signs-1"></span></div>
+                                    <ul>
+                                        <li><strong>Address:</strong> 321 Car World, 2nd Breaking <br>Str, Newyork ,USA
+                                            10002.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="info-box-two">
+                                    <div class="icon-box"><span class="icon-technology"></span></div>
+                                    <ul>
+                                        <li><strong>Call Us:</strong><br> +321 4567 89 012 & 79 023</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box-two">
+                                    <div class="icon-box"><span class="icon-multimedia"></span></div>
+                                    <ul>
+                                        <li><strong>Mail Us:</strong><br> Supportyou@SFinanceteam.com</li>
+                                    </ul>
+                                </div>
+                                <ul class="social-icon-five mt-3">
+                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-skype"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <div class="info-box-two">
+                                    <div class="icon-box"><span class="icon-signs-1"></span></div>
+                                    <ul>
+                                        <li><strong>Address:</strong> 321 Car World, 2nd Breaking <br>Str, Newyork ,USA
+                                            10002.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="info-box-two">
+                                    <div class="icon-box"><span class="icon-technology"></span></div>
+                                    <ul>
+                                        <li><strong>Call Us:</strong><br> +321 4567 89 012 & 79 023</li>
+                                    </ul>
+                                </div>
+                                <div class="info-box-two">
+                                    <div class="icon-box"><span class="icon-multimedia"></span></div>
+                                    <ul>
+                                        <li><strong>Mail Us:</strong><br> Supportyou@SFinanceteam.com</li>
+                                    </ul>
+                                </div>
+                                <ul class="social-icon-five mt-3">
+                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-skype"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!--Map Section-->
+    <section class="map-section">
+        <!--Map Outer-->
+        <div class="map-outer">
+            <div class="google-map"
+                 id="contact-google-map"
+                 data-map-lat="40.748109"
+                 data-map-lng="-73.903774"
+                 data-icon-path="images/icons/map-marker.png"
+                 data-map-title="Alabama, USA"
+                 data-map-zoom="12"
+                 data-markers='{
+                    "marker-2": [40.750970, -73.915876, "<h4>Branch Office</h4><p>50 Lower Thames St, London</p>"],
+                    "marker-4": [40.746289, -73.948664, "<h4>Branch Office</h4><p>50 Lower Thames St, London</p>"]
+                }'>
+
+            </div>
+        </div>
+    </section>
+    <!--End Map Section-->
+
+{% endblock mainBody %}
