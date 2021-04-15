@@ -1,4 +1,3 @@
-from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from multiselectfield import MultiSelectField
@@ -37,7 +36,7 @@ class User(AbstractUser):
 
 class TreeInformation(models.Model):
     id = models.AutoField('编号', primary_key=True)
-    imgUrl = models.CharField('图片地址', max_length=100)
+    img = models.ImageField('树木图片', upload_to='./')
     type = models.ForeignKey(TreeType, on_delete=models.CASCADE, verbose_name="类型", )
     age = models.IntegerField('树龄')
     height = models.IntegerField('树高')

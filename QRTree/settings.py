@@ -137,7 +137,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'statics'), #主文件下静态文件
+    os.path.join(BASE_DIR, 'statics'),  # 主文件下静态文件
 )
 
-AUTH_USER_MODEL = 'Display.User'
+AUTH_USER_MODEL = 'Display.User'  # 自定义User
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'statics/upload')
+
+MEDIA_URL = '/statics/upload/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+    }
+}

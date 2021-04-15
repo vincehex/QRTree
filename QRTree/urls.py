@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+
 from Display import views
 
 urlpatterns = [
@@ -22,6 +23,7 @@ urlpatterns = [
     re_path(r'^$|index', views.index),
     path('about', views.about),
     path('team', views.team),
-    path('contact', views.contact)
+    path('contact', views.contact),
+    path('statics/upload/<str:img>', views.showUpload)
 
 ]

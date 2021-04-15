@@ -40,8 +40,15 @@ class TreeInformationAdmin(admin.ModelAdmin):
     search_fields = ['age', 'height', 'width']
     list_filter = ['type']
     # date_hierarchy = ['date']
-    fieldsets = [["基础", {'fields': ['type', 'age', 'height', 'width']}],
+    fieldsets = [["基础", {'fields': ['type', 'age', 'height', 'width', 'img']}],
                  ["选填", {'fields': ['date', 'user']}]]
+
+    def preview(self, obj):
+        return '<img src="/statics/%s" />' % obj.img
+
+    preview.allow_tags = True
+    preview.short_description = "图片"
+    readonly_fields = ['preview']
 
 
 @admin.register(Record)
