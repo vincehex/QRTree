@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$|index', views.index),
     path('about', views.about),
-    path('team', views.team),
+    path('trees', views.tree, name='trees'),
+    path('trees-detail/<int:id>', views.tree_detail),
     path('contact', views.contact),
     path('statics/upload/<str:img>', views.showUpload)
 
