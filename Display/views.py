@@ -31,7 +31,7 @@ def tree_detail(request, id):
     if (obj.user_id is None):
         name = "暂无"
     else:
-        name = User.objects.get(obj.user_id)
+        name = User.objects.get(id=obj.user_id)
     return render(request, 'project-details.html', {'detail': obj, 'type': type, 'name': name})
 
 
