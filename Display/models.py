@@ -47,8 +47,8 @@ class TreeInformation(models.Model):
     img = models.ImageField('树木图片', upload_to='./upload')
     type = models.ForeignKey(TreeType, on_delete=models.CASCADE, verbose_name="类型", )
     age = models.IntegerField('树龄')
-    height = models.IntegerField('树高')
-    width = models.IntegerField('地围')
+    height = models.FloatField('树高')
+    width = models.FloatField('地围')
     date = models.DateField('被领养日期', blank=True, null=True)
 
     def formatDate(self):
