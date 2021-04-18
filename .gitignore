@@ -3,3 +3,4 @@ db.sqlite3
 Display/migrations/0*
 /statics/upload/*
 /statics/QRCode/*
+.*
