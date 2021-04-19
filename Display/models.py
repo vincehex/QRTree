@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from multiselectfield import MultiSelectField
@@ -22,6 +23,7 @@ class TreeType(models.Model):
 
 class User(AbstractUser):
     # is_staff = models.BooleanField("工作人员状态", default=True)
+    password = models.CharField('密码', max_length=128)
     phone = models.CharField('手机号码', max_length=11)
     sex_type = [['male', u'男'], ['female', u'女']]
     sex = models.CharField('性别', max_length=10, choices=sex_type)
@@ -36,11 +38,12 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
-    # def save(self, *args, **kwargs):
 
-
-#         self.password = make_password(self.password)
-#         super(User, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        self.is_active = True
+        self.is_staff = True
+        super(User, self).save(*args, **kwargs)
 
 class TreeInformation(models.Model):
     id = models.AutoField('编号', primary_key=True)

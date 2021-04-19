@@ -25,6 +25,5 @@ urlpatterns = [
     path('trees', views.tree, name='trees'),
     path('trees-detail/<int:id>', views.tree_detail),
     path('contact', views.contact),
-    path('statics/upload/<str:img>', views.showUpload)
-
+    path('statics/upload/<str:img>', views.showUpload),
 ]
