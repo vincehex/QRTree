@@ -1495,30 +1495,30 @@ permission_id</ColNames>
     </column>
     <column id="532" parent="173" name="height">
       <Position>3</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>real|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="533" parent="173" name="width">
+    <column id="533" parent="173" name="date">
       <Position>4</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="534" parent="173" name="date">
-      <Position>5</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="535" parent="173" name="type_id">
-      <Position>6</Position>
+    <column id="534" parent="173" name="type_id">
+      <Position>5</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="536" parent="173" name="user_id">
-      <Position>7</Position>
+    <column id="535" parent="173" name="user_id">
+      <Position>6</Position>
       <DataType>bigint|0s</DataType>
     </column>
-    <column id="537" parent="173" name="img">
-      <Position>8</Position>
+    <column id="536" parent="173" name="img">
+      <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="537" parent="173" name="width">
+      <Position>8</Position>
+      <DataType>real|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="538" parent="173" name="TreeInformation_type_id_dc4bab94">
