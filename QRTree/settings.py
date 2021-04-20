@@ -74,11 +74,11 @@ WSGI_APPLICATION = 'QRTree.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'sqlite3': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'default': {
+    'mysql': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'NAME': 'qrtree',  # 数据库名称
         'HOST': '',  # 数据库地址，本机 ip 地址 127.0.0.1

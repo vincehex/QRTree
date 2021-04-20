@@ -1,3 +1,4 @@
+import qrcode
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -53,6 +54,14 @@ class TreeInformation(models.Model):
     height = models.FloatField('树高')
     width = models.FloatField('地围')
     date = models.DateField('被领养日期', blank=True, null=True)
+    qrimg = models.CharField('二维码图片', max_length=100, blank=True)
+
+    def save(self, *args, **kwargs):
+        num = TreeInformation.objects.count() + 1
+        self.qrimg = '/static/QRCode/' + str(num)
+        im = qrcode.make('localhost:8000/trees-detail/' + str(num))
+        im.save('./statics/QRCode/' + str(num))
+        super().save(*args, **kwargs)
 
     def formatDate(self):
         return self.date.strftime("%Y-%m-%d")

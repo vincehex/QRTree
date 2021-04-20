@@ -1,4 +1,3 @@
-import qrcode
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -19,8 +18,6 @@ def tree(request):
     list = TreeInformation.objects.all()
     trees = []
     for i in list:
-        im = qrcode.make('localhost:8000/trees-detail/' + str(i.id))
-        im.save('./statics/QRCode/' + str(i.id))
         trees.append({'id': i.id, 'imgUrl': i.img, 'height': i.height, 'width': i.width})
     return render(request, 'projects.html', {'trees': trees})
 
