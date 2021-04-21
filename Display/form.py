@@ -39,7 +39,7 @@ class FormR(forms.Form):
     captcha = forms.CharField(label='验证码', widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'captcha'}))
     email = forms.EmailField(label="电子邮箱", widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'email'}))
     phone = forms.CharField(label="电话", widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'phone'}))
-    sex_choices = [['male', 'male'], ['female', 'femal']]
+    sex_choices = [['male', u'男'], ['female', u'女']]
     sex = forms.ChoiceField(label='性别', widget=forms.Select(attrs={'class': 'form-control', 'id': 'sex'}),
                             choices=sex_choices, initial='male')
 
