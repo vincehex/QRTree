@@ -10,7 +10,7 @@
 
     <link rel="apple-touch-icon" sizes="180x180" href="/static/assets/images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/assets/images/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/assets/images/favicons/favicon.png">
     <link rel="manifest" href="/static/assets/images/favicons/site.webmanifest">
     <meta name="description" content="Agrikon HTML Template For Agriculture Farm & Farmers">
 
@@ -103,10 +103,20 @@
                     {#                    </a>#}
                     <div class="main-header__info-phone">
                         <!-- 按钮：用于打开模态框 -->
-                        <button type="button" class="btn" style="color: white; box-shadow: none;" data-toggle="modal"
-                                data-target="#module">
-                            登录/注册
-                        </button>
+                        {#                        <button type="button" class="btn" style="color: white; box-shadow: none;" data-toggle="modal"#}
+                        {#                                data-target="#module">#}
+                        {#                            登录/注册#}
+                        {#                        </button>#}
+                        {% if request.session.is_login %}
+                            <div style="color: white">欢迎，{{ request.session.username }}</div>
+                            <a href="/logout" style="margin-left: 4%; text-decoration: none; color: aliceblue;"
+                               title="登出">X</a>
+
+                        {% else %}
+                            <a type="button" class="btn" style="color: white; box-shadow: none;" href="/login">
+                                登录/注册
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -297,14 +307,16 @@
                         <div class="container">
                             <div class="row clearfix">
                                 <div class="col-md-12 column">
-                                    <form>
+                                    <form action="/login" method="post">
+                                        {% csrf_token %}
                                         <div class="form-group">
                                             <label for="username">用户名:</label>
-                                            <input type="text" class="form-control" id="username">
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                   required>
                                         </div>
                                         <div class="form-group">
                                             <label for="pwd">密码:</label>
-                                            <input type="password" class="form-control" id="pwd">
+                                            <input type="password" class="form-control" id="pwd" name="pwd" required>
                                         </div>
                                     </form>
                                 </div>
@@ -315,22 +327,23 @@
                         <div class="container">
                             <div class="row clearfix">
                                 <div class="col-md-12 column">
-                                    <form>
+                                    <form action="/register" method="post">
+                                        {% csrf_token %}
                                         <div class="form-group">
                                             <label for="username">用户名:</label>
-                                            <input type="text" class="form-control" id="username">
+                                            <input type="text" class="form-control" id="username" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="pwd">密码:</label>
-                                            <input type="password" class="form-control" id="pwd">
+                                            <input type="password" class="form-control" id="pwd" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">电子邮箱:</label>
-                                            <input type="email" class="form-control" id="email">
+                                            <input type="email" class="form-control" id="email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">电话:</label>
-                                            <input type="tel" class="form-control" id="phone">
+                                            <input type="tel" class="form-control" id="phone" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="sex">性别:</label>
@@ -345,60 +358,42 @@
                         </div>
                     </div>
                 </div>
-                {#                <div class="container">#}
-                {#                    <div class="row clearfix">#}
-                {#                        <div class="col-md-12 column">#}
-                {#                            <form>#}
-                {#                                <div class="form-group">#}
-                {#                                    <label for="username">用户名:</label>#}
-                {#                                    <input type="text" class="form-control" id="username">#}
-                {#                                </div>#}
-                {#                                <div class="form-group">#}
-                {#                                    <label for="pwd">密码:</label>#}
-                {#                                    <input type="password" class="form-control" id="pwd">#}
-                {#                                </div>#}
-                {#                                <div class="form-group">#}
-                {#                                    <label for="email">电子邮箱:</label>#}
-                {#                                    <input type="email" class="form-control" id="email">#}
-                {#                                </div>#}
-                {#                                <div class="form-group">#}
-                {#                                    <label for="phone">电话:</label>#}
-                {#                                    <input type="tel" class="form-control" id="phone">#}
-                {#                                </div>#}
-                {#                                <div class="form-group">#}
-                {#                                    <label for="sex">性别:</label>#}
-                {#                                    <select class="form-control" id="sex">#}
-                {#                                        <option value="male">男</option>#}
-                {#                                        <option value="female">女</option>#}
-                {#                                    </select>#}
-                {#                                </div>#}
-                {#                            </form>#}
-                {#                        </div>#}
-                {#                    </div>#}
-                {#                </div>#}
-            </div>
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" onclick="submit()">提交</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
 
-            <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">提交</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
             </div>
-
         </div>
     </div>
-</div>
-<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i>
+    </a>
+    <script>
+        var id = 'login';
 
-<script src="/static/assets/js/jquery-3.5.1.min.js"></script>
-<script src="/static/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/static/assets/js/swiper.min.js"></script>
-<script src="/static/assets/js/jquery.ajaxchimp.min.js"></script>
-<script src="/static/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="/static/assets/js/jquery.validate.min.js"></script>
-<script src="/static/assets/js/bootstrap-select.min.js"></script>
-<script src="/static/assets/js/wow.js"></script>
-<script src="/static/assets/js/odometer.min.js"></script>
-<script src="/static/assets/js/jquery.appear.min.js"></script>
+        function login() {
+            id = 'login'
+        }
+
+        function register() {
+            id = 'register'
+        }
+
+        function submit() {
+            document.getElementById(id).getElementsByTagName('form')[0].submit();
+        }
+    </script>
+    <script src="/static/assets/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/js/swiper.min.js"></script>
+    <script src="/static/assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="/static/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/assets/js/jquery.validate.min.js"></script>
+    <script src="/static/assets/js/bootstrap-select.min.js"></script>
+    <script src="/static/assets/js/wow.js"></script>
+    <script src="/static/assets/js/odometer.min.js"></script>
+    <script src="/static/assets/js/jquery.appear.min.js"></script>
 <script src="/static/assets/js/jarallax.min.js"></script>
 <script src="/static/assets/js/circle-progress.min.js"></script>
 <script src="/static/assets/js/wNumb.min.js"></script>
