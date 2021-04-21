@@ -1,9 +1,11 @@
 from captcha.helpers import captcha_image_url
 from captcha.models import CaptchaStore
+from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from .form import FormL, FormR
+from .email_send import sendEmail
+from .form import FormL, FormR, FormF
 from .models import TreeInformation, TreeType, User
 
 
@@ -77,27 +79,62 @@ def login(request):
 def register(request):
     if request.method == "GET":
         form = FormR()  # 初始化form对象
-        key = CaptchaStore.generate_key()
-        imgUrl = captcha_image_url(key)
         return render(request, "register.html", locals())
     else:
         form = FormR(request.POST)  # 将数据传给form对象
         if form.is_valid():  # 进行校验
             data = form.cleaned_data
-            print(data)
-            User.objects.create(username=data.get('name'), password=data.get('pwd'),
-                                email=data.get('email'), phone=data.get('phone'),
-                                sex=data.get('sex'))
+            if (request.session.get('code') != data.get('captcha')):
+                clear_errors = "验证码无效！"
+                return render(request, "register.html", {'form': form, 'clear_errors': clear_errors})
+            elif User.objects.filter(email=data.get('email')):
+                clear_errors = "该邮箱已被注册！"
+                return render(request, "register.html", {'form': form, 'clear_errors': clear_errors})
+            User.objects.create(username=data.get('name'), password=data.get('pwd'), email=data.get('email'),
+                                phone=data.get('phone'), sex=data.get('sex'))
             request.session['username'] = data.get('name')
             request.session['is_login'] = True
             return redirect("/index")
         else:  # 校验失败
-            key = CaptchaStore.generate_key()
-            imgUrl = captcha_image_url(key)
             clear_errors = form.errors.get("__all__")  # 获取全局钩子错误信息
             return render(request, "register.html", locals())
 
 
 def logout(request):
-    request.session.flush()
+    if (request.session):
+        request.session.flush()
     return render(request, 'index.html')
+
+
+def sendRegisterEmail(request, email):
+    code = sendEmail(email, "register")
+    request.session['code'] = code
+    return HttpResponse("")
+
+
+def sendFindEmail(request, email):
+    code = sendEmail(email, '找回密码')
+    request.session['code'] = code
+    return HttpResponse("")
+
+
+def findPwd(request):
+    if request.method == "GET":
+        form = FormF()  # 初始化form对象
+        return render(request, "findPwd.html", locals())
+    else:
+        form = FormF(request.POST)  # 将数据传给form对象
+        if form.is_valid():  # 进行校验
+            data = form.cleaned_data
+            # if(request.session.get('code') != data.get('captcha')):
+            #     clear_errors = "验证码无效！"
+            #     return render(request, "findPwd.html", {'form': form, 'clear_errors': clear_errors})
+            obj = User.objects.filter(email=data.get('email'))
+            if not obj:
+                clear_errors = "邮箱无效"
+                return render(request, "findPwd.html", {'form': form, 'clear_errors': clear_errors})
+            obj.update(password=make_password(data.get('pwd')))
+            return redirect("/login")
+        else:  # 校验失败
+            clear_errors = form.errors.get("__all__")  # 获取全局钩子错误信息
+            return render(request, "findPwd.html", locals())

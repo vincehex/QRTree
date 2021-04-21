@@ -158,3 +158,10 @@ LOGGING = {
     }
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+EMAIL_HOST = "smtp.qq.com"  # 服务器
+EMAIL_PORT = 25  # 一般情况下都为25
+EMAIL_HOST_USER = "leck_zjy@qq.com"  # 账号
+EMAIL_HOST_PASSWORD = "krsahymrbyjzbijd"  # 密码
+EMAIL_USE_TLS = False  # 一般都为False
+EMAIL_FROM = "leck_zjy@qq.com"  # 邮箱来自
