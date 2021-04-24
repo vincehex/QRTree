@@ -66,3 +66,18 @@ class FormF(forms.Form):
                           widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'pwd'}))
     pwd2 = forms.CharField(min_length=4, label='再输一次密码',
                            widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'pwd2'}))
+
+
+class FormC(forms.Form):
+    pwd = forms.CharField(min_length=4, label='密码', required=False,
+                          widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'pwd'}))
+    pwd2 = forms.CharField(min_length=4, label='再输一次密码', required=False,
+                           widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'pwd2'}))
+    sex_choices = [['male', '男'], ['female', '女']]
+    sex = forms.ChoiceField(label='性别', choices=sex_choices, required=False,
+                            widget=forms.Select(attrs={'class': 'form-control', 'id': 'sex'}))
+    phone = forms.CharField(label='手机号码', max_length=11, required=False,
+                            widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'phone'}))
+
+    def clean(self):
+        self.cleaned_data

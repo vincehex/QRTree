@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from .email_send import sendEmail
-from .form import FormL, FormR, FormF
+from .form import FormL, FormR, FormF, FormC
 from .models import TreeInformation, TreeType, User
 
 
@@ -138,3 +138,32 @@ def findPwd(request):
         else:  # 校验失败
             clear_errors = form.errors.get("__all__")  # 获取全局钩子错误信息
             return render(request, "findPwd.html", locals())
+
+
+def changeinfo(request):
+    username = request.session.get("username")
+    obj = User.objects.filter(username=username)
+    if request.method == "GET":
+        form = FormC()  # 初始化form对象
+        obj = obj.values()[0]
+        dict = {'pwd': obj.get('password'), 'sex': obj.get('sex'), 'phone': obj.get('phone')}
+        return render(request, "changeinfo.html", dict)
+    else:
+        form = FormC(request.POST)  # 将数据传给form对象
+        if form.is_valid():  # 进行校验
+            data = form.cleaned_data
+            print(data)
+            dict = {}
+            if (data.get('pwd') != ''):
+                dict['password'] = make_password(data.get('pwd'))
+            if (data.get('sex') != ''):
+                dict['sex'] = data.get('sex')
+            if (data.get('phone') != ''):
+                dict['phone'] = data.get('phone')
+
+            print(dict)
+            # obj.update(dict)
+            return redirect("/")
+        else:  # 校验失败
+            clear_errors = form.errors.get("__all__")  # 获取全局钩子错误信息
+            return render(request, "changeinfo.html", locals())

@@ -37,24 +37,24 @@
 </div>
 <div class="page-wrapper">
     <header class="main-header">
-        <div class="topbar">
-            <div class="container">
-                <div class="topbar__left">
-                    <div class="topbar__social">
-                        <a href="#" class="fab fa-facebook-square"></a>
-                        <a href="#" class="fab fa-twitter"></a>
-                        <a href="#" class="fab fa-pinterest-p"></a>
-                        <a href="#" class="fab fa-instagram"></a>
-                    </div>
-                    <p>Welcome to Trees farm</p>
-                </div>
-                <div class="topbar__right">
-                    <a href="#"><i class="agrikon-icon-email"></i>
-                        <span class="__cf_email__" data-cfemail="94faf1f1f0fcf1f8e4d4f7fbf9e4f5faedbaf7fbf9">[email&#160;protected]</span></a>
-                    <a href="#"><i class="agrikon-icon-clock"></i>Mon - Sat 8:00 - 6:30, Sunday - CLOSED</a>
-                </div>
-            </div>
-        </div>
+        {#        <div class="topbar">#}
+        {#            <div class="container">#}
+        {#                <div class="topbar__left">#}
+        {#                    <div class="topbar__social">#}
+        {#                        <a href="#" class="fab fa-facebook-square"></a>#}
+        {#                        <a href="#" class="fab fa-twitter"></a>#}
+        {#                        <a href="#" class="fab fa-pinterest-p"></a>#}
+        {#                        <a href="#" class="fab fa-instagram"></a>#}
+        {#                    </div>#}
+        {#                    <p>Welcome to Trees farm</p>#}
+        {#                </div>#}
+        {#                <div class="topbar__right">#}
+        {#                    <a href="#"><i class="agrikon-icon-email"></i>#}
+        {#                        <span class="__cf_email__" data-cfemail="94faf1f1f0fcf1f8e4d4f7fbf9e4f5faedbaf7fbf9">[email&#160;protected]</span></a>#}
+        {#                    <a href="#"><i class="agrikon-icon-clock"></i>Mon - Sat 8:00 - 6:30, Sunday - CLOSED</a>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
         <nav class="main-menu">
             <div class="container">
                 <div class="logo-box">
@@ -101,23 +101,38 @@
                     {#                            <span class="main-header__info-phone-title">123 4567 8910</span>#}
                     {#                        </span>#}
                     {#                    </a>#}
-                    <div class="main-header__info-phone">
-                        <!-- 按钮：用于打开模态框 -->
-                        {#                        <button type="button" class="btn" style="color: white; box-shadow: none;" data-toggle="modal"#}
-                        {#                                data-target="#module">#}
-                        {#                            登录/注册#}
-                        {#                        </button>#}
-                        {% if request.session.is_login %}
-                            <div style="color: white">欢迎，{{ request.session.username }}</div>
-                            <a href="/logout" style="margin-left: 4%; text-decoration: none; color: aliceblue;"
-                               title="登出">X</a>
 
-                        {% else %}
-                            <a type="button" class="btn" style="color: white; box-shadow: none;" href="/login">
-                                登录/注册
+                    <!-- 按钮：用于打开模态框 -->
+                    {#                        <button type="button" class="btn" style="color: white; box-shadow: none;" data-toggle="modal"#}
+                    {#                                data-target="#module">#}
+                    {#                            登录/注册#}
+                    {#                        </button>#}
+                    {% if request.session.is_login %}
+                        <div class="main-header__info-phone" style="color: white; padding: 0;box-shadow: none;">
+                            <div class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                 aria-haspopup="true"
+                                 aria-expanded="false">欢迎，{{ request.session.username }}</div>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/changeinfo">修改信息</a>
+                                <a class="dropdown-item" href="/logout">登出</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Separated link</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="main-header__info-phone" style="color: white; box-shadow: none;">
+                            <a type="button" class="btn" href="/login">
+                                登录
                             </a>
-                        {% endif %}
-                    </div>
+                        </div>
+                        <div class="main-header__info-phone" style="color: white">
+                            <a type="button" class="btn" href="/register">
+                                注册
+                            </a>
+                        </div>
+                    {% endif %}
+
                 </div>
             </div>
         </nav>
@@ -394,11 +409,11 @@
     <script src="/static/assets/js/wow.js"></script>
     <script src="/static/assets/js/odometer.min.js"></script>
     <script src="/static/assets/js/jquery.appear.min.js"></script>
-<script src="/static/assets/js/jarallax.min.js"></script>
-<script src="/static/assets/js/circle-progress.min.js"></script>
-<script src="/static/assets/js/wNumb.min.js"></script>
-<script src="/static/assets/js/nouislider.min.js"></script>
+    <script src="/static/assets/js/jarallax.min.js"></script>
+    <script src="/static/assets/js/circle-progress.min.js"></script>
+    <script src="/static/assets/js/wNumb.min.js"></script>
+    <script src="/static/assets/js/nouislider.min.js"></script>
 
-<script src="/static/assets/js/theme.js"></script>
+    <script src="/static/assets/js/theme.js"></script>
 </body>
 </html>
